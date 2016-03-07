@@ -3,11 +3,12 @@
 <div class="row">
   <div class="col-md-6">
     <%= form_for(@pin) do |f| %>
-      <% if !@errors.nil? %>
-        <div class="error">
-          <label><%= pluralize(@errors.count, "error") %> prohibited this pin from being saved:</label>
+      <% if @pin.errors.any? %>
+        <div class="error_explanation">
+          <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
+
           <ul>
-            <% @errors.full_messages.each do |message| %>
+            <% @pin.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
