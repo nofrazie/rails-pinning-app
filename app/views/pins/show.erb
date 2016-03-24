@@ -15,8 +15,12 @@
       <%= "#{@pin.url}" %>
     </a>
   </p>
+
+  <%= link_to "Edit", edit_pin_path(@pin), class: "btn btn-danger" %>
+
 </div>
 <br/>
+
 <a href="/">
   <i class="fa fa-angle-left"></i>
   Back to Home

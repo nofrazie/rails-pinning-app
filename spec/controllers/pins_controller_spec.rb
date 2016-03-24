@@ -38,8 +38,8 @@ RSpec.describe PinsController do
         title: "Rails Wizard",
         url: "http://railswizard.org",
         slug: "rails-wizard",
-        text: "A fun and helpful Rails Resource",
-        resource_type: "rails"}
+        text: "A fun and helpful Rails Resource"
+      }
     end
 
     after(:each) do
@@ -73,14 +73,43 @@ RSpec.describe PinsController do
       expect(response).to render_template(:new)
     end
 
-    it 'assigns the @errors instance variable on error' do
-      # The title is required in the Pin model, so we'll
-      # delete the title from the @pin_hash in order
-      # to test what happens with invalid parameters
-      @pin_hash.delete(:title)
-      post :create, pin: @pin_hash
-      expect(assigns[:errors].present?).to be(true)
+    # it 'assigns the @errors instance variable on error' do
+    #   # The title is required in the Pin model, so we'll
+    #   # delete the title from the @pin_hash in order
+    #   # to test what happens with invalid parameters
+    #   @pin_hash.delete(:title)
+    #   post :create, pin: @pin_hash
+    #   expect(assigns[:errors].present?).to be(true)
+    # end
+
+  end
+
+  describe "GET edit" do
+
+    it "responds to GET" do
+      get :edit, :id => "1"
+      expect(response.body).to eq "edit called"
     end
+
+    it "requires the :id parameter" do
+      expect { get :edit }.to raise_error(ExpectedRoutingError)
+    end
+
+    # before(:each) do
+    #   @pin = Pin.first
+    # end
+    # #get to pins/id/edit
+    # #responds successfully
+    # it 'responds with successfully following a GET to /edit' do
+    #   get :edit, pin_id: @pin.id
+    #   expect(response).to render_template("pins/1/edit")
+    # end
+    #renders the edit template
+    #assigns an instance variable called @pin to the Pin with the appropriate id
+
+  end
+
+  describe "PUT update" do
 
   end
 
