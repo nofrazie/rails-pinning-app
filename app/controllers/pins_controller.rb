@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :set_pin, only: [:show, :update, :destroy]
 
   def index
     @pins = Pin.all
@@ -18,6 +18,11 @@ class PinsController < ApplicationController
   end
 
   def edit
+    if params[:slug]
+      @pin = Pin.find_by_slug(params[:slug])
+    elsif params[:id]
+      @pin = Pin.find(params[:id])
+    end
   end
 
   def create

@@ -85,32 +85,19 @@ RSpec.describe PinsController do
   end
 
   describe "GET edit" do
-
-    it "responds to GET" do
-      get :edit, :id => "1"
-      expect(response.body).to eq "edit called"
+    before(:each) do
+      @pin_hash = {
+        title: "Rails Wizard",
+        url: "http://railswizard.org",
+        slug: "rails-wizard",
+        text: "A fun and helpful Rails Resource"
+      }
     end
 
-    it "requires the :id parameter" do
-      expect { get :edit }.to raise_error(ExpectedRoutingError)
+    it 'renders the edit view' do
+      get :edit
+      expect(response).to render_template(:edit)
     end
-
-    # before(:each) do
-    #   @pin = Pin.first
-    # end
-    # #get to pins/id/edit
-    # #responds successfully
-    # it 'responds with successfully following a GET to /edit' do
-    #   get :edit, pin_id: @pin.id
-    #   expect(response).to render_template("pins/1/edit")
-    # end
-    #renders the edit template
-    #assigns an instance variable called @pin to the Pin with the appropriate id
-
-  end
-
-  describe "PUT update" do
-
   end
 
 end
