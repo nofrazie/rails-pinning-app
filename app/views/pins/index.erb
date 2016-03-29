@@ -1,6 +1,13 @@
 <div class="header">
-  <h1>Learning to Code</h1>
-  <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
+  <div class="row">
+    <div class="col-md-5">
+      <h1>Learning to Code</h1>
+      <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
+    </div>
+    <div class="col-md-7 text-right">
+      <%= link_to "New Pin", new_pin_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
 <hr/>
 <div class="pins">
@@ -15,6 +22,12 @@
                   <%= image_tag('rails-logo-thumbnail.png') %>
                 <% elsif "#{Category.find(pin.category_id).name}" == "ruby" %>
                   <%= image_tag('ruby-logo-thumbnail.png') %>
+                <% elsif "#{Category.find(pin.category_id).name}" == "unknown" %>
+                  <% if pin.image_file_name == nil %>
+                    <%= image_tag 'blank.png', size: "60x60" %>
+                  <% elsif pin.image_file_name != nil %>
+                    <%= image_tag pin.image.url(:thumb) %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="col-xs-9">

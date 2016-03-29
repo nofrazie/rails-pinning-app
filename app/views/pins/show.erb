@@ -9,6 +9,13 @@
   <p><%= "#{@pin.text}" %></p>
 
   <hr/>
+
+  <% if @pin.image_file_name == nil %>
+    <%= image_tag('ruby-on-rails-logo.png') %>
+  <% elsif @pin.image_file_name != nil %>
+    <%= image_tag @pin.image.url(:medium) %>
+  <% end %>
+
   <p>
     <b>Visit <%= "#{@pin.title}" %> at: </b>
     <a class="url" href="<%= "#{@pin.url}" %>" target="_blank">
