@@ -15,13 +15,18 @@ gem "paperclip"
 gem 'aws-sdk', '< 2.0'
 gem 'bcrypt'
 
-group :development, :test do
+group :development do
   gem 'byebug'
-  gem 'spring', '~>1.3.4'
-  gem 'database_cleaner'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
 
 gem 'web-console', '~> 2.0', group: :development
 
-gem 'rspec'
-gem 'rspec-rails'
+group :test do
+  gem 'shoulda-matchers'
+  gem 'spring'
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rspec-rails'
+end
