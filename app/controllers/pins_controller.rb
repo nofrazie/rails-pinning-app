@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :require_user, only: [:index, :show, :new, :edit, :destroy, :update, :create]
+  before_action :require_user, only: [:index, :new, :edit, :destroy, :update, :create]
   before_action :set_pin, only: [:show, :update, :destroy]
 
   def index
@@ -67,7 +67,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image)
+      params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id)
     end
 
 end
