@@ -1,4 +1,5 @@
 class PinsController < ApplicationController
+  before_action :require_user, only: [:index, :show]
   before_action :set_pin, only: [:show, :update, :destroy]
 
   def index
