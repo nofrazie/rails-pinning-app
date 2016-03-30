@@ -18,15 +18,16 @@ gem 'bcrypt'
 group :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
+end
+
+group :development, :test do
   gem 'spring'
 end
 
-gem 'web-console', '~> 2.0', group: :development
-
 group :test do
   gem 'shoulda-matchers'
-  gem 'spring'
   gem 'database_cleaner'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'factory_girl'
 end
