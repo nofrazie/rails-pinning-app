@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   # GET /boards
@@ -10,6 +11,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
+    @pins = @board.pins
   end
 
   # GET /boards/new

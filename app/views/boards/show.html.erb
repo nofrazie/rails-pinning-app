@@ -1,14 +1,2 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @board.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @board.user %>
-</p>
-
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>
+<h2><%= @board.name %></h2>
+<%= render partial: "shared/pins_list" %>

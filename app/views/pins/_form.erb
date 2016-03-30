@@ -45,6 +45,13 @@
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, { class: "form-control" }) %>
       </div>
 
+      <%= f.fields_for :pinning do |p| %>
+        <div class="form-group">
+          <label>Which board?</label>
+          <%= p.collection_select(:board_id, current_user.boards, :id, :name, {}, {class: "form-control"}) %>
+          <%= p.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+
       <%= f.submit class: "btn btn-default" %>
 
     <% end %>

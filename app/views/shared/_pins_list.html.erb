@@ -1,0 +1,46 @@
+<div class="pins">
+  <% @pins.each_slice(3) do |row| %>
+    <div class="row">
+      <% row.each do |pin| %>
+        <div class="pin-container col-md-4">
+          <div class="pin">
+
+            <div class="pin-header row">
+              <div class="logo-thumbnail col-xs-3">
+                <% if "#{Category.find(pin.category_id).name}" == "rails" %>
+                  <%= image_tag('rails-logo-thumbnail.png') %>
+                <% elsif "#{Category.find(pin.category_id).name}" == "ruby" %>
+                  <%= image_tag('ruby-logo-thumbnail.png') %>
+                <% elsif "#{Category.find(pin.category_id).name}" == "unknown" %>
+                  <% if pin.image_file_name == nil %>
+                    <%= image_tag 'blank.png', size: "60x60" %>
+                  <% elsif pin.image_file_name != nil %>
+                    <%= image_tag pin.image.url(:thumb) %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="col-xs-9">
+                <h4>
+                  <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug) %>
+                </h4>
+                <a class="url" href="<%= "#{pin.url}" %>">
+                  <%= "#{pin.url}" %>
+                </a>
+              </div>
+            </div>
+
+            <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
+              <icon>
+              Repin!
+            <% end %>
+
+            <hr/>
+
+            <p class="text"><%= "#{pin.text}" %></p>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

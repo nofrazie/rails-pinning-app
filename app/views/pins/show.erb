@@ -29,6 +29,7 @@
     </div>
 
     <div class="col-md-6">
+      <%= render partial: "shared/repin_form", locals: {pin: @pin} %>
       <h4>This pin has been pinned by...</h4>
       <ul>
         <% @users.each do |user| %>

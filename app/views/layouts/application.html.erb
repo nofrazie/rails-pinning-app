@@ -11,15 +11,44 @@
   <div class="container">
 
     <% if current_user %>
-      <ul>
-        <li><%= current_user.email %></li>
-        <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-      </ul>
+      <div class="dropdown">
+
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+          <%= current_user.first_name %>
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <% current_user.boards.each do |board| %>
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="<%= boards_path %>">My Boards</a>
+            </li>
+          <% end %>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation">
+            <%= link_to "Add a Pin", new_pin_path, "role" => "menuitem", "tabindex" => "-1" %>
+          </li>
+          <li role="presentation">
+            <%= link_to "Add a Board", new_board_path, "role" => "menuitem", "tabindex" => "-1" %>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation">
+            <%= link_to "Home", root_path, "role" => "menuitem", "tabindex" => "-1" %>
+          </li>
+          <li role="presentation">
+            <%= link_to "Logout", logout_path, :method => :delete, "role" => "menuitem", "tabindex" => "-1" %>
+          </li>
+        </ul>
+
+      </div>
+
     <% else %>
+
       <ul>
         <li><%= link_to "Login", 'login' %></li>
         <li><%= link_to "Signup", 'signup' %></li>
       </ul>
+
     <% end %>
 
     <%= yield %>
