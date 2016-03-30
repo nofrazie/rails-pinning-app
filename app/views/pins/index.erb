@@ -11,11 +11,12 @@
 </div>
 <hr/>
 <div class="pins">
-  <% current_user.pins.each_slice(3) do |row| %>
+  <% @pins.each_slice(3) do |row| %>
     <div class="row">
       <% row.each do |pin| %>
         <div class="pin-container col-md-4">
           <div class="pin">
+
             <div class="pin-header row">
               <div class="logo-thumbnail col-xs-3">
                 <% if "#{Category.find(pin.category_id).name}" == "rails" %>
@@ -39,8 +40,16 @@
                 </a>
               </div>
             </div>
+
+            <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
+              <icon>
+              Repin!
+            <% end %>
+
             <hr/>
+
             <p class="text"><%= "#{pin.text}" %></p>
+
           </div>
         </div>
       <% end %>

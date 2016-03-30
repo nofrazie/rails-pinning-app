@@ -10,21 +10,33 @@
 
   <hr/>
 
-  <% if @pin.image_file_name == nil %>
-    <%= image_tag('ruby-on-rails-logo.png') %>
-  <% elsif @pin.image_file_name != nil %>
-    <%= image_tag @pin.image.url(:medium) %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <% if @pin.image_file_name == nil %>
+        <%= image_tag('ruby-on-rails-logo.png') %>
+      <% elsif @pin.image_file_name != nil %>
+        <%= image_tag @pin.image.url(:medium) %>
+      <% end %>
 
-  <p>
-    <b>Visit <%= "#{@pin.title}" %> at: </b>
-    <a class="url" href="<%= "#{@pin.url}" %>" target="_blank">
-      <%= "#{@pin.url}" %>
-    </a>
-  </p>
+      <p>
+        <b>Visit <%= "#{@pin.title}" %> at: </b>
+        <a class="url" href="<%= "#{@pin.url}" %>" target="_blank">
+          <%= "#{@pin.url}" %>
+        </a>
+      </p>
 
-  <%= link_to "Edit", edit_pin_path(@pin), class: "btn btn-danger" %>
+      <%= link_to "Edit", edit_pin_path(@pin), class: "btn btn-danger" %>
+    </div>
 
+    <div class="col-md-6">
+      <h4>This pin has been pinned by...</h4>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= user.first_name %> <%= user.last_name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 <br/>
 

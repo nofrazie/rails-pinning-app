@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :boards
+
   root 'pins#index'
   get '/pins/name-:slug' => 'pins#show_by_name', as: 'pin_by_name'
   get '/pins/name-:slug/edit' => 'pins#edit', as: :edit_pin_by_name
@@ -12,4 +14,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new', as: :login
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy', as: :logout
+
+  post "pins/repin/:id" => "pins#repin", as: 'repin'
 end
